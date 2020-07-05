@@ -104,22 +104,22 @@ function bestYearAvg(array) {
   if (array.length === 0) {
     return null;
   }
-  const years = [];
+  const yearsArray = [];
   array.forEach(movie => {
-    if (!years.some(e => e.year === movie.year)) {
+    if (!yearsArray.some(e => e.year === movie.year)) {
       const yearObject = {
         year: movie.year,
         ratings: [movie.rate]
       };
-      years.push(yearObject);
+      yearsArray.push(yearObject);
     } else {
-      const yearObject = years.find(yearObj => {
+      const yearObject = yearsArray.find(yearObj => {
         return yearObj.year === movie.year;
       });
       yearObject.ratings.push(movie.rate);
     }
   });
-  years.forEach(year => {
+  yearsArray.forEach(year => {
     const yearAverage =
       Math.round(
         (year.ratings.reduce((average, rating) => {
@@ -130,7 +130,7 @@ function bestYearAvg(array) {
       ) / 100;
     year.average = yearAverage;
   });
-  const bestYear = years.reduce((prev, current) => {
+  const bestYear = yearsArray.reduce((prev, current) => {
     return prev.average > current.average ? prev : current;
   });
   return `The best year was ${bestYear.year} with an average rate of ${bestYear.average}`;
