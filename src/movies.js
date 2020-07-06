@@ -13,9 +13,10 @@ function getAllDirectors(array) {
 
 function howManyMovies(array) {
   return array.filter(
-    element =>
-      element.director === 'Steven Spielberg' &&
-      element.genre.some(genre => genre === 'Drama')
+    movie =>
+      movie.director === 'Steven Spielberg' &&
+      // movie.genre.some(genre => genre === 'Drama')
+      movie.genre.includes('Drama')
   ).length;
 }
 
